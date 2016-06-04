@@ -16,3 +16,49 @@ void SelectSort(int *a,int length)
      swap(a[end], a[MaxIndex]);//交换到相对最后的位置 
     } 
 }
+
+
+//---->优化
+//从头遍历，选出最大的和最小的，分别放到头和尾
+void SelectSort(int *a, int length) 
+{ 
+    assert(a); 
+    assert(length > 0); 
+    
+    int end = length - 1; 
+    int start = 0; 
+    
+    while (end > start) 
+    { 
+        int iMax = start; 
+        int iMin = start; 
+        for (int i = start+1; i <= end; i++) 
+        { 
+            if (a[i] >= a[iMax]) 
+                iMax = i; 
+            if (a[i] < a[iMin]) 
+                iMin = i; 
+        } 
+        if ((start != iMax)&&(end != iMin))//情况1 
+        { 
+            swap(a[start], a[iMin]); 
+            swap(a[end], a[iMax]); 
+        } 
+        if ((start == iMax)&&(end == iMin))//情况2 
+        { 
+            swap(a[iMax], a[iMin]); 
+        } 
+        if ((start == iMax)&&(end != iMin))//情况3 
+        { 
+            swap(a[iMax], a[end]); 
+            swap(a[iMin], a[start]); 
+        } 
+        if ((start != iMax) && (end == iMin))//情况4 
+        { 
+            swap(a[iMin], a[start]); 
+            swap(a[iMax], a[end]); 
+        } 
+        start++; 
+        end--;
+    }
+}
