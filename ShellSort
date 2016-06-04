@@ -1,0 +1,25 @@
+//希尔排序，输入插入排序的一种，时间复杂度O（n^1.25）
+//直接插入排序在相对有序的情况下事效率比较高，最坏的情况就是相对逆序的情况，希尔排序是插入排序的优化，先进行预排序
+//设置一个gap，慢慢缩小gap的范围，达到其相对有序。
+void ShellSort(int *a,int length)
+{   
+    assert(a);
+    int gap = length;
+    
+    while (gap > 1)
+    {
+      gap = gap / 3 + 1;//慢慢缩小范围直到缩小到1 
+      for (int i = 0; i < length-gap; i++) 
+      { 
+        int end = i; 
+        int tmp = a[end + gap]; 
+        
+        while (a[end]>tmp&&end>=0)
+        {
+          a[end + gap] = a[end]; 
+          end -= gap; 
+        }
+        a[end + gap] = tmp; 
+      } 
+    } 
+}
