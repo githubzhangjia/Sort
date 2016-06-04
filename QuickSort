@@ -1,0 +1,40 @@
+//快速排序  O（N*lgN）
+int partition(int *a, int left, int right)
+{
+        int key = a[right];
+        int begin = left;
+        int end = right - 1;
+        while (begin < end)
+        {
+                while (a[begin] < key)
+                {
+                        ++begin;
+                }
+                while (begin < end&&a[end]>key)
+                {
+                        --end;
+                }
+                if (begin < end)
+                {
+                        swap(a[begin], a[end]);
+                }
+        }
+        if (a[begin]>a[right])
+        {
+                swap(a[begin], a[right]);
+                return begin;
+        }
+        else
+                return right;
+}
+void QuickSort(int *a, int left,int right)
+{
+        assert(a);
+        if (left < right)
+        {
+                int div = partition(a, 0, right);
+                QuickSort(a, 0, div - 1);
+                QuickSort(a, div + 1, right);
+        }
+}
+
