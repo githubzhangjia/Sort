@@ -1,0 +1,18 @@
+//直接选择排序  时间复杂度O(N^2)
+//从头至尾遍历选出最大的放到最后面
+void SelectSort(int *a,int length) 
+{ 
+    int end = length - 1; 
+    
+    for (; end > 0; end--) 
+    { 
+      int MaxIndex = 0; 
+      
+      for (int i = 0; i <= end; i++)//选出最大值的下标 
+      { 
+        if (a[MaxIndex] < a[i]) 
+            MaxIndex = i; 
+      } 
+     swap(a[end], a[MaxIndex]);//交换到相对最后的位置 
+    } 
+}
